@@ -20,14 +20,25 @@ class BinaryTree {
         return newNode;
     }
 
+    public static void printTree(BinaryTree tree, int space) {
+        if (tree != null) {
+            space += 5;
+            printTree(tree.left, space);
+            for (int i = 0; i < space; i++) {
+                System.out.print("  ");
+            }
+            System.out.println(tree.data);
+            printTree(tree.right, space);
+        }
+
+    }
+
     public static BinaryTree leftChildOf(BinaryTree tree) {
         return new BinaryTree();
     }
 
     public static BinaryTree rightChildOf(BinaryTree tree) {
         return new BinaryTree();
-
-
     }
 
     public static BinaryTree parentOf(BinaryTree tree) {
@@ -56,5 +67,55 @@ class BinaryTree {
             System.out.println(tree.data);
             inOrderOf(tree.right);
         }
+    }
+
+    public static BinaryTree copy(BinaryTree tree) {
+        if (tree == null) return null;
+        BinaryTree newTree = new BinaryTree();
+        newTree.data = tree.data;
+        newTree.left = copy(tree.left);
+        newTree.right = copy(tree.right);
+        return newTree;
+    }
+
+    public static boolean isEqual(BinaryTree tree1, BinaryTree tree2) {
+        if (height(tree1) != height(tree2)) return false;
+        if (nodeCount(tree1) != nodeCount(tree2)) return false;
+        return isEqual(tree1, tree2, true);
+    }
+
+    private static boolean isEqual(BinaryTree tree1, BinaryTree tree2, boolean isit) {
+        if (tree1 != null) {
+            if (isit && tree1.data == tree2.data) {
+                isit = isEqual(tree1.left, tree2.left, true);
+                if (!isit) return false;
+                isit = isEqual(tree1.right, tree2.right, true);
+                if (!isit) return false;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int height(BinaryTree tree) {
+        if (tree == null) return 0;
+        else return Math.max(height(tree.left), height(tree.right)) + 1;
+    }
+
+    public static int nodeCount(BinaryTree tree) {
+        if (tree == null) return 0;
+        return nodeCount(tree.left) + 1 + nodeCount(tree.right);
+    }
+
+    public static boolean contains(int data, BinaryTree tree) {
+        boolean is = false;
+        if (tree != null) {
+            if (data == tree.data) return true;
+            contains(data, tree.left);
+            contains(data, tree.right);
+        } else {
+        }
+        return false;
     }
 }
