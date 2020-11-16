@@ -118,4 +118,27 @@ class BinaryTree {
         }
         return false;
     }
+
+    public static void preOrderNonRecursive(BinaryTree tree) {
+        BinaryTree temp = tree;
+        while (true) {
+            if (tree.left == null) {
+
+            }
+        }
+    }
+
+    public boolean checkBST(BinaryTree tree) {
+        return checkBST(tree, 0, Integer.MAX_VALUE);
+    }
+
+    private boolean checkBST(BinaryTree tree, int min, int max) {
+        if(tree!=null) {
+            if(tree.data>min&&tree.data<max) {
+                return checkBST(tree.left,min,tree.data) && checkBST(tree.right,tree.data,max);
+            }
+            return false;
+        }
+        return true;
+    }
 }
