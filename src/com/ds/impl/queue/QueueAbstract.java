@@ -1,12 +1,12 @@
 package com.ds.impl.queue;
 
 public interface QueueAbstract {
-    public Object dequeue();
-    public void enqueue(Object object);
-    public Object getFront();
-    public Object getRear();
-    public String toString();
-    public boolean isFull();
-    public boolean isEmpty();
+    Object dequeue();
+    void enqueue(Object object);
+    Object getFront();
+    Object getRear();
+    String toString();
+    boolean isFull();
+    boolean isEmpty();
 
 }
