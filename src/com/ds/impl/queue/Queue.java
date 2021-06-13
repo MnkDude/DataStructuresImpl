@@ -20,10 +20,8 @@ public class Queue implements QueueAbstract {
             throw new QueueIndexOutOfBoundsException("Oh! Come on, Queue reached it's capacity, you can't add more than " + capacity + " in this Queue");
         }
         rear = (rear + 1) % capacity;
-//        queue[rear] = object;
         queue.add(rear,object);
         size++;
-        System.out.println(this);
     }
 
     @Override
@@ -31,13 +29,10 @@ public class Queue implements QueueAbstract {
         if (isEmpty()) {
             throw new QueueIndexOutOfBoundsException("Cannot dequeue from empty queue");
         }
-//        Object temp = queue[front];
         Object temp = queue.get(front);
-//        queue[front] = null;
         queue.add(front,null);
         front = (front + 1) % capacity;
         size--;
-        System.out.println(this);
         return temp;
     }
 
@@ -65,11 +60,9 @@ public class Queue implements QueueAbstract {
         }
         int i = front;
         while (i != rear) {
-//            strQueue += queue[i] + ", ";
             strQueue += queue.get(i) + ", ";
             i = (i + 1) % capacity;
         }
-//        strQueue += queue[rear] + " ]";
         strQueue += queue.get(rear) + " ]";
         return strQueue;
     }
